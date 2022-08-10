@@ -22,7 +22,7 @@ A response from Jarspec can either be a success or an error.
   "status": "ok",
   "code": 200,
   "data": [
-    //...any success data here
+    "...any success data here"
   ],
   "timestamp": "2022-08-10T16:17:25.620Z",
   "version": "1.0.0"
@@ -35,7 +35,7 @@ A response from Jarspec can either be a success or an error.
   "status": "invalid-argument",
   "code": 400,
   "data": [
-    //...any error data here
+    "...any error data here"
   ],
   "message": "One or more supplied arguments are invalid.",
   "timestamp": "2022-08-10T16:17:25.620Z",
