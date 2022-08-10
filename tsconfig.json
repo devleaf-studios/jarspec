@@ -1,0 +1,17 @@
+{
+  "exclude": [
+    "packages/**/tests/**",
+    "packages/**/dist/**"
+  ],
+  "references": [
+    {
+      "path": "./packages/client"
+    },
+    {
+      "path": "./packages/server"
+    },
+    {
+      "path": "./common"
+    }
+  ]
+}

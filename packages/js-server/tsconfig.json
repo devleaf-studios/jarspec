@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true,
+    "lib": ["ES2015", "DOM"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src"],
+  "references": [
+    { "path": "../../common" }
+  ]
+}
