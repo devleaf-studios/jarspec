@@ -3,14 +3,14 @@ import { JarspecErrorResponse, JarspecSuccessResponse } from '../../../common/@t
 const isErrorResponse = <T>(response: any): response is JarspecErrorResponse<T> => {
   return response.status 
     && response?.code >= 400
-    && response.timestamp;
+    && response.timestamp !== undefined;
 }
 
 const isSuccessResponse = <T>(response: any): response is JarspecSuccessResponse<T> => {
-  return response?.status === 'OK'
+  return response?.status === 'ok'
     && response?.code >= 200
     && response?.code < 300
-    && response.timestamp;
+    && response.timestamp !== undefined;
 }
 
 export const jarspecRequest = async <T = unknown>(input: RequestInfo, init?: RequestInit): Promise<JarspecErrorResponse<T>|JarspecSuccessResponse<T>> => {
@@ -21,8 +21,7 @@ export const jarspecRequest = async <T = unknown>(input: RequestInfo, init?: Req
     if (!isSuccessResponse<T>(res)) throw new TypeError('The response of the call was not a valid jarspec response.');
     return res;
   } catch (err) {
-    if (isErrorResponse<typeof err>(err)) return err;
-    return {
+    if (!isErrorResponse<typeof err>(err)) err = {
       status: 'na',
       code: 502,
       message: err.message,
@@ -30,5 +29,6 @@ export const jarspecRequest = async <T = unknown>(input: RequestInfo, init?: Req
       timestamp: new Date().toISOString(),
       version: '1.0.0'
     };
+    throw err;
   }
 }

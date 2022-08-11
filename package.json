@@ -2,7 +2,8 @@
   "name": "@devleaf-labs/jarspec",
   "version": "1.0.0",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "test"
   ],
   "license": "MIT",
   "devDependencies": {
@@ -11,5 +12,8 @@
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
-  "packageManager": "yarn@3.2.2"
+  "packageManager": "yarn@3.2.2",
+  "scripts": {
+    "workspace:build": "yarn workspaces foreach run build"
+  }
 }
