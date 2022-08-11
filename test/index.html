@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>This is a demo HTML file which can be run in any browser, linking to a browserified JS file (index.js > bundle.js) which calls the mock server (to test js-client)</p>
+  <p>To build a new bundle, run <pre>yarn build</pre></p>
+  <p>To run the API, run <pre>yarn run:api</pre></p>
+  <p>Responses should be inserted into the DOM below the buttons and also echoed into the console.</p>
+  <button id="success-test">Test Success Response</button>
+  <button id="error-test">Test Error Response</button>
+
+  <pre id="response">
+
+  </pre>
+</body>
+<script src="bundle.js" type="text/javascript"></script>
+</html>
