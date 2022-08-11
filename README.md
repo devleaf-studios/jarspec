@@ -100,8 +100,8 @@ The gRPC/HTTP status combination ensures most clients compatibility with the res
 
 | Name | Language | Client/Server | Link |
 |--|--|--|--|
-| js-client | Typescript/Javascript | Client | ... |
-| js-server | NodeJS (Express) | Server | ... |
+| js-client | Typescript/Javascript | Client | (npm)[https://www.npmjs.com/package/@devleaf-labs/jarspec-client] |
+| js-server | NodeJS (Express) | Server | (npm)[https://www.npmjs.com/package/@devleaf-labs/jarspec-server] |
 
 ## Additional Thoughts/Questions
 
