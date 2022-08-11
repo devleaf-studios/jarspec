@@ -50,12 +50,12 @@ Properties the JSON response can contain for a successful response.
 
 | Name | Type | Description | Required |
 |--|--|--|--|
-| Status | 'ok'| The 'ok' gRPC status code | [x] |
-| Code | 20X | A 20X HTTP status code | [x] |
-| Data | any[]\|null | An array of data to return to the caller or null | [x] |
-| ID | string | An optional ID to link the response to a request within the API. If supplied this should be logged | [ ] |
-| timestamp | string | An ISO timestamp of when the response was supplied | [x] |
-| version | string | A semver string of the Jarspec version being used | [x] |
+| Status | 'ok'| The 'ok' gRPC status code | ✅ |
+| Code | 20X | A 20X HTTP status code | ✅ |
+| Data | any[]\|null | An array of data to return to the caller or null | ✅ |
+| ID | string | An optional ID to link the response to a request within the API. If supplied this should be logged | - |
+| timestamp | string | An ISO timestamp of when the response was supplied | ✅ |
+| version | string | A semver string of the Jarspec version being used | ✅ |
 
 ### Error Response
 
@@ -63,13 +63,13 @@ Properties the JSON response can contain for an error response.
 
 | Name | Type | Description | Required |
 |--|--|--|--|
-| Status | gRPC Status | Any of the gRPC status codes | [x] |
-| Code | 4XX - 5XX | A HTTP code matching the gRPC status | [x] |
-| Message | string | A friendly message to present back to the caller | [x] |
-| Data | any[]\|null | An array of data/metadata to return to the caller or null | [x] |
-| ID | string | An optional ID to link the response to a request within the API. If supplied this should be logged | [ ] |
-| timestamp | string | An ISO timestamp of when the response was supplied | [x] |
-| version | string | A semver string of the Jarspec version being used | [x] |
+| Status | gRPC Status | Any of the gRPC status codes | ✅ |
+| Code | 4XX - 5XX | A HTTP code matching the gRPC status | ✅ |
+| Message | string | A friendly message to present back to the caller | ✅ |
+| Data | any[]\|null | An array of data/metadata to return to the caller or null | ✅ |
+| ID | string | An optional ID to link the response to a request within the API. If supplied this should be logged | - |
+| timestamp | string | An ISO timestamp of when the response was supplied | ✅ |
+| version | string | A semver string of the Jarspec version being used | ✅ |
 
 ### gRPC/HTTP Statuses
 
