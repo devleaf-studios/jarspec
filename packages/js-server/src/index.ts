@@ -21,7 +21,7 @@ export namespace Jarspec {
   }
 
   export const success = <T>(
-    data: T[],
+    data?: T[],
     id?: string
   ): JarspecSuccessResponse<T> => {
     const generic = response('ok', 'success', data, id);
