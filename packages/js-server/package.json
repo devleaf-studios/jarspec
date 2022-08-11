@@ -1,9 +1,9 @@
 {
   "name": "@devleaf-labs/jarspec-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc --build && npx webpack"
+    "build": "tsc --build"
   },
   "license": "MIT"
 }

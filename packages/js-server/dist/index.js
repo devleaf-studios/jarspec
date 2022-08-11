@@ -1,1 +1,43 @@
-(()=>{"use strict";var e={444:(e,r)=>{Object.defineProperty(r,"__esModule",{value:!0}),r.gRPCtoHTTP=void 0,r.gRPCtoHTTP={ok:200,"invalid-argument":400,"failed-precondition":400,"out-of-range":400,unauthenticated:401,"permission-denied":403,"not-found":404,aborted:409,"already-exists":409,"resource-exhausted":429,cancelled:499,"data-loss":500,unknown:500,internal:500,"not-implemented":501,na:502,unavailable:503,"deadline-exceeded":504}},27:(e,r,t)=>{Object.defineProperty(r,"__esModule",{value:!0}),r.Jarspec=void 0;var n,o,s=t(444);n=r.Jarspec||(r.Jarspec={}),o=function(e,r,t,n){return{status:e,code:s.gRPCtoHTTP[e],data:null!=t?t:null,message:r,id:n,timestamp:(new Date).toISOString(),version:"1.0.0"}},n.success=function(e,r){var t=o("ok","success",e,r);return delete t.message,t},n.error=function(e,r,t,n,s){var a,u=o(e,r,n,t);return console.error("[".concat(null!==(a=u.id)&&void 0!==a?a:" - ","] ").concat(e," - ").concat(r),s),u},n.expressMiddleware=function(e,r,t){r.jarspec={success:function(e,t){var o=n.success(e,t);r.status(200).json(o)},error:function(e,t,o,s,a){var u=n.error(e,t,o,s,a);r.status(u.code).json(u)}},t()}}},r={},t=function t(n){var o=r[n];if(void 0!==o)return o.exports;var s=r[n]={exports:{}};return e[n](s,s.exports,t),s.exports}(27),n=exports;for(var o in t)n[o]=t[o];t.__esModule&&Object.defineProperty(n,"__esModule",{value:!0})})();
+"use strict";
+exports.__esModule = true;
+exports.Jarspec = void 0;
+var GRPCtoHTTP_1 = require("./common/lib/GRPCtoHTTP");
+var Jarspec;
+(function (Jarspec) {
+    var response = function (rpcCode, message, data, id) {
+        return {
+            status: rpcCode,
+            code: GRPCtoHTTP_1.gRPCtoHTTP[rpcCode],
+            data: data !== null && data !== void 0 ? data : null,
+            message: message,
+            id: id,
+            timestamp: new Date().toISOString(),
+            version: '1.0.0'
+        };
+    };
+    Jarspec.success = function (data, id) {
+        var generic = response('ok', 'success', data, id);
+        delete generic.message;
+        return generic;
+    };
+    Jarspec.error = function (rpcCode, message, id, data, error) {
+        var _a;
+        var generic = response(rpcCode, message, data, id);
+        console.error("[".concat((_a = generic.id) !== null && _a !== void 0 ? _a : ' - ', "] ").concat(rpcCode, " - ").concat(message), error);
+        return generic;
+    };
+    Jarspec.expressMiddleware = function (req, res, next) {
+        res.jarspec = {
+            success: function (data, id) {
+                var jarspecSuccess = Jarspec.success(data, id);
+                res.status(200).json(jarspecSuccess);
+            },
+            error: function (rpcCode, message, id, data, err) {
+                var jarspecError = Jarspec.error(rpcCode, message, id, data, err);
+                res.status(jarspecError.code).json(jarspecError);
+            }
+        };
+        next();
+    };
+})(Jarspec = exports.Jarspec || (exports.Jarspec = {}));
+//# sourceMappingURL=index.js.map

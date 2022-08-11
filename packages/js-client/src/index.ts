@@ -1,4 +1,4 @@
-import { JarspecErrorResponse, JarspecSuccessResponse } from '../../../common/@types';
+import { JarspecErrorResponse, JarspecSuccessResponse } from './common/@types';
 
 const isErrorResponse = <T>(response: any): response is JarspecErrorResponse<T> => {
   return response.status 

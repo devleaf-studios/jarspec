@@ -1,5 +1,5 @@
-import { gRPCStatus, JarspecErrorResponse, JarspecSuccessResponse } from '../../../common/@types';
-import { gRPCtoHTTP } from '../../../common/lib/GRPCtoHTTP';
+import { gRPCStatus, JarspecErrorResponse, JarspecSuccessResponse } from './common/@types';
+import { gRPCtoHTTP } from './common/lib/GRPCtoHTTP';
 
 export namespace Jarspec {
 
