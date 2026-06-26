@@ -17,6 +17,8 @@ We developed Jarspec to conform to existing and well-known standards to help imp
 A response from Jarspec can either be a success or an error.
 
 ### An example Jarspec Success Response:
+
+A collection is returned as an array of data:
 ```json
 {
   "status": "ok",
@@ -25,7 +27,21 @@ A response from Jarspec can either be a success or an error.
     "...any success data here"
   ],
   "timestamp": "2022-08-10T16:17:25.620Z",
-  "version": "1.0.0"
+  "version": "2.0.0"
+}
+```
+
+A single resource may be returned directly as an object (it must be an object, not a primitive):
+```json
+{
+  "status": "ok",
+  "code": 200,
+  "data": {
+    "id": "user_123",
+    "name": "Ada Lovelace"
+  },
+  "timestamp": "2022-08-10T16:17:25.620Z",
+  "version": "2.0.0"
 }
 ```
 
@@ -39,7 +55,7 @@ A response from Jarspec can either be a success or an error.
   ],
   "message": "One or more supplied arguments are invalid.",
   "timestamp": "2022-08-10T16:17:25.620Z",
-  "version": "1.0.0"
+  "version": "2.0.0"
 }
 ```
 
@@ -52,7 +68,7 @@ Properties the JSON response can contain for a successful response.
 |--|--|--|--|
 | Status | 'ok'| The 'ok' gRPC status code | ✅ |
 | Code | 20X | A 20X HTTP status code | ✅ |
-| Data | any[]\|null | An array of data to return to the caller or null | ✅ |
+| Data | T\|T[]\|null | A single object, an array (of objects or primitives), or null. A single value must be an object — not a primitive | ✅ |
 | ID | string | An optional ID to link the response to a request within the API. If supplied this should be logged | - |
 | timestamp | string | An ISO timestamp of when the response was supplied | ✅ |
 | version | string | A semver string of the Jarspec version being used | ✅ |
@@ -66,7 +82,7 @@ Properties the JSON response can contain for an error response.
 | Status | gRPC Status | Any of the gRPC status codes | ✅ |
 | Code | 4XX - 5XX | A HTTP code matching the gRPC status | ✅ |
 | Message | string | A friendly message to present back to the caller | ✅ |
-| Data | any[]\|null | An array of data/metadata to return to the caller or null | ✅ |
+| Data | T\|T[]\|null | A single object, an array (of objects or primitives) of data/metadata, or null. A single value must be an object — not a primitive | ✅ |
 | ID | string | An optional ID to link the response to a request within the API. If supplied this should be logged | - |
 | timestamp | string | An ISO timestamp of when the response was supplied | ✅ |
 | version | string | A semver string of the Jarspec version being used | ✅ |
@@ -105,9 +121,9 @@ The gRPC/HTTP status combination ensures most clients compatibility with the res
 
 ## Additional Thoughts/Questions
 
-**Why is data supplied as an Array?**
+**Why can data be an object or an array?**
 
-> We chose to supply data as an Array to guarantee a consistent data type when returning API data. If only a single piece of data is being returned, it can easily be accessed by grabbing the first element of the array (`data[0]`) on the client side.
+> A single resource can be returned directly as a typed object (for example `data: User` for a "get one" request), so the caller no longer has to unwrap a one-element array (`data[0]`). Collections — and lists of primitives such as `string[]` or `number[]` — are still returned as an array. The one rule is that a single (non-array) value must be an object, never a bare primitive, which keeps responses predictable while supporting both shapes. `data` may also be `null`.
 
 **Submitting changes for Jarspec**
 
@@ -118,5 +134,5 @@ The gRPC/HTTP status combination ensures most clients compatibility with the res
 > We keep a list of all client/server libraries for jarspec in a table above. However if you are programming in a language or framework that currently does not have a specific library and would like to create one, we encourage you to do so and submit a pull request linking the library and specifying the language in the table above. Once we have confirmed the library is functional we will add it to the readme.
 
 ## Latest jarspec version:
-**1.0.0**
+**2.0.0**
 
