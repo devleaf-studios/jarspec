@@ -12,28 +12,30 @@ var Jarspec;
             message: message,
             id: id,
             timestamp: new Date().toISOString(),
-            version: '1.0.0'
+            version: '2.0.0'
         };
     };
-    Jarspec.success = function (data, id) {
+    function success(data, id) {
         var generic = response('ok', 'success', data, id);
         delete generic.message;
         return generic;
-    };
-    Jarspec.error = function (rpcCode, message, id, data, error) {
+    }
+    Jarspec.success = success;
+    function error(rpcCode, message, id, data, error) {
         var _a;
         var generic = response(rpcCode, message, data, id);
         console.error("[".concat((_a = generic.id) !== null && _a !== void 0 ? _a : ' - ', "] ").concat(rpcCode, " - ").concat(message), error);
         return generic;
-    };
+    }
+    Jarspec.error = error;
     Jarspec.expressMiddleware = function (req, res, next) {
         res.jarspec = {
             success: function (data, id) {
-                var jarspecSuccess = Jarspec.success(data, id);
+                var jarspecSuccess = success(data, id);
                 res.status(200).json(jarspecSuccess);
             },
             error: function (rpcCode, message, id, data, err) {
-                var jarspecError = Jarspec.error(rpcCode, message, id, data, err);
+                var jarspecError = error(rpcCode, message, id, data, err);
                 res.status(jarspecError.code).json(jarspecError);
             }
         };

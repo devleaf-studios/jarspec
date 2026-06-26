@@ -13,7 +13,7 @@ const isSuccessResponse = <T>(response: any): response is JarspecSuccessResponse
     && response.timestamp !== undefined;
 }
 
-export const jarspecRequest = async <T = unknown>(input: RequestInfo, init?: RequestInit) => {
+export const jarspecRequest = async <T = any>(input: RequestInfo, init?: RequestInit) => {
   try {
     const call = await fetch(input, init);
     const res = await call.json();
@@ -27,7 +27,7 @@ export const jarspecRequest = async <T = unknown>(input: RequestInfo, init?: Req
       message: err.message,
       data: [err],
       timestamp: new Date().toISOString(),
-      version: '1.0.0'
+      version: '2.0.0'
     };
     throw err as JarspecErrorResponse;
   }
