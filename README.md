@@ -119,6 +119,10 @@ The gRPC/HTTP status combination ensures most clients compatibility with the res
 | js-client | Typescript/Javascript | Client | [npm](https://www.npmjs.com/package/@devleaf-labs/jarspec-client) |
 | js-server | NodeJS (Express) | Server | [npm](https://www.npmjs.com/package/@devleaf-labs/jarspec-server) |
 
+## Releasing the libraries
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the library release process.
+
 ## Additional Thoughts/Questions
 
 **Why can data be an object or an array?**

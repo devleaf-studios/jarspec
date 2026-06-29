@@ -1,9 +1,21 @@
 {
   "name": "@devleaf-labs/jarspec-server",
   "version": "2.0.0",
-  "main": "dist/index.js",
+  "type": "commonjs",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "./dist/index.cjs",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc --build"
+    "build": "tsdown",
+    "prepack": "tsdown"
+  },
+  "devDependencies": {
+    "tsdown": "^0.22.3"
   },
   "license": "MIT",
   "publishConfig": {
@@ -12,6 +24,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/devleaf-studios/jarspec/tree/master/packages/js-server"
+    "url": "git+https://github.com/devleaf-studios/jarspec.git",
+    "directory": "packages/js-server"
+  },
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
   }
 }

@@ -4,3 +4,4 @@ yarn.lock
 *.tsbuildinfo
 **/tsconfig.tsbuildinfo
 .DS_store
+packages/*/dist
