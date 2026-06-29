@@ -9,7 +9,6 @@
   "devDependencies": {
     "mtsl": "^0.0.11",
     "publint": "^0.3.21",
-    "tsdown": "^0.22.3",
     "typescript": "^6.0.3"
   },
   "packageManager": "yarn@3.2.2",
