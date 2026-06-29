@@ -8,12 +8,14 @@
   "license": "MIT",
   "devDependencies": {
     "mtsl": "^0.0.11",
-    "typescript": "^4.7.4",
-    "webpack-cli": "^4.10.0"
+    "publint": "^0.3.21",
+    "tsdown": "^0.22.3",
+    "typescript": "^6.0.3"
   },
   "packageManager": "yarn@3.2.2",
   "scripts": {
     "workspace:build": "yarn workspaces foreach run build",
-    "workspace:link-common": "yarn mtsl startwithoutadd -s ./common -d ./packages/js-client/src/common & yarn mtsl startwithoutadd -s ./common -d ./packages/js-server/src/common &"
+    "workspace:link-common": "yarn mtsl startwithoutadd -s ./common -d ./packages/js-client/src/common & yarn mtsl startwithoutadd -s ./common -d ./packages/js-server/src/common &",
+    "lint:pkg": "publint packages/js-client && publint packages/js-server"
   }
 }
