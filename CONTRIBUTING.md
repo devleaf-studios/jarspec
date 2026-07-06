@@ -2,7 +2,7 @@
 
 ## Releasing the libraries
 
-The libraries live in this Yarn workspaces monorepo and are published to npm independently. Each package is built with [tsdown](https://tsdown.dev) into a dual ESM + CommonJS bundle (`.mjs`/`.cjs` + `.d.mts`/`.d.cts`). `dist/` is **git-ignored** and rebuilt automatically at publish time by each package's `prepack` script, so there is nothing built to commit.
+The libraries live in this Bun workspaces monorepo and are published to npm independently. Each package is built with [tsdown](https://tsdown.dev) into a dual ESM + CommonJS bundle (`.mjs`/`.cjs` + `.d.mts`/`.d.cts`). `dist/` is **git-ignored** and rebuilt automatically at publish time by each package's `prepack` script, so there is nothing built to commit.
 
 ### 1. Bump the version
 
@@ -14,9 +14,9 @@ Update the version everywhere and keep the values in sync:
 ### 2. Build and validate
 
 ```sh
-yarn install
-yarn workspace:build   # builds both packages with tsdown
-yarn lint:pkg          # publint — validates the published package shape
+bun install
+bun run workspace:build   # builds both packages with tsdown
+bun run lint:pkg          # publint - validates the published package shape
 ```
 
 ### 3. Publish
@@ -24,9 +24,9 @@ yarn lint:pkg          # publint — validates the published package shape
 Each command runs the package's `prepack` first (which rebuilds `dist/`); the `files` field then ships only `dist/` in the tarball:
 
 ```sh
-yarn npm login         # one-time; needs publish rights to the @devleaf-labs scope
-yarn workspace @devleaf-labs/jarspec-client npm publish
-yarn workspace @devleaf-labs/jarspec-server npm publish
+npm login                                  # one-time; needs publish rights to the @devleaf-labs scope
+bun publish --cwd packages/js-client
+bun publish --cwd packages/js-server
 ```
 
 Both packages set `publishConfig.access: "public"`, so the scoped packages are published publicly.

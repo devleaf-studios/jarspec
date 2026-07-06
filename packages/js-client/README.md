@@ -3,7 +3,7 @@
 ## What is Jarspec?
 
 The **J**SON **A**PI **R**esponse **Spec**ification (jarspec) is a new specification provided to lay a foundation for
-how JSON responses from RESTful API servers should be formatted. 
+how JSON responses from RESTful API servers should be formatted.
 
 You can read more about [Jarspec here...](https://github.com/devleaf-studios/jarspec)
 
@@ -20,27 +20,29 @@ You can install the jarspec client using the following commands:
 # NPM
 npm i @devleaf-labs/jarspec-client
 
-# Yarn
-yarn add @devleaf-labs/jarspec-client
+# Bun
+bun add @devleaf-labs/jarspec-client
 ```
+
 And then use in your code as follows:
 
 ```typescript
 // Using Javascript
-const jarspec = require('@devleaf-labs/jarspec-client');
+const jarspec = require("@devleaf-labs/jarspec-client");
 
-jarspec.jarspecRequest('https://localhost:3000')
-  .then(response => {
+jarspec
+  .jarspecRequest("https://localhost:3000")
+  .then((response) => {
     console.log(response); // jarspec success response
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err); // jarspec error response
   });
 
 // Using Typescript
-import { jarspecRequest } from '@devleaf-labs/jarspec-client';
+import { jarspecRequest } from "@devleaf-labs/jarspec-client";
 
-jarspecRequest<unknown>('https://localhost:3000')
+jarspecRequest<unknown>("https://localhost:3000")
   .then((res: JarspecSuccessResponse) => {
     console.log(res); // jarspec success response
     console.log(res.data); // unknown[]|null
@@ -66,12 +68,12 @@ The parameters supplied to the `jarspecRequest` method are the same that would b
 
 ```typescript
 interface JarspecSuccessResponse<T = any> {
-  status: 'ok';
+  status: "ok";
   code: 200;
-  data: T[]|null;
+  data: T[] | null;
   id?: string;
   timestamp: string;
-  version: '1.0.0';
+  version: "1.0.0";
 }
 ```
 
@@ -82,57 +84,52 @@ interface JarspecSuccessResponse<T = any> {
   status: gRPCStatus;
   code: HTTPStatus;
   message: string;
-  data: T[]|null;
+  data: T[] | null;
   id?: string;
   timestamp: string;
-  version: '1.0.0';
+  version: "1.0.0";
 }
 ```
 
-### gRPCStatus 
+### gRPCStatus
 
 ```typescript
 type gRPCStatus =
-  'ok'|
-  'invalid-argument'|
-  'failed-precondition'|
-  'out-of-range'|
-  'unauthenticated'|
-  'permission-denied'|
-  'not-found'|
-  'aborted'|
-  'already-exists'|
-  'resource-exhausted'|
-  'cancelled'|
-  'data-loss'|
-  'unknown'|
-  'internal'|
-  'not-implemented'|
-  'na'|
-  'unavailable'|
-  'deadline-exceeded';
+  | "ok"
+  | "invalid-argument"
+  | "failed-precondition"
+  | "out-of-range"
+  | "unauthenticated"
+  | "permission-denied"
+  | "not-found"
+  | "aborted"
+  | "already-exists"
+  | "resource-exhausted"
+  | "cancelled"
+  | "data-loss"
+  | "unknown"
+  | "internal"
+  | "not-implemented"
+  | "na"
+  | "unavailable"
+  | "deadline-exceeded";
 ```
 
 ### HTTPStatus
 
 ```typescript
-type HTTPStatus = 
-  200|
-  400|
-  401|
-  403|
-  404|
-  409|
-  429|
-  499|
-  500|
-  501|
-  502|
-  503|
-  504;
+type HTTPStatus =
+  | 200
+  | 400
+  | 401
+  | 403
+  | 404
+  | 409
+  | 429
+  | 499
+  | 500
+  | 501
+  | 502
+  | 503
+  | 504;
 ```
-
-
-
-
-
