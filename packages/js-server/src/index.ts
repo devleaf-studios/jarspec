@@ -1,6 +1,15 @@
 import { gRPCStatus, JarspecErrorResponse, JarspecSuccessResponse } from './common/@types';
 import { gRPCtoHTTP } from './common/lib/GRPCtoHTTP';
 
+export type {
+  gRPCStatus,
+  HTTPStatus,
+  CommonResponse,
+  Data,
+  JarspecSuccessResponse,
+  JarspecErrorResponse,
+} from './common/@types';
+
 export namespace Jarspec {
 
   const response = <T>(

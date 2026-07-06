@@ -1,5 +1,14 @@
 import { JarspecErrorResponse, JarspecSuccessResponse } from './common/@types';
 
+export type {
+  gRPCStatus,
+  HTTPStatus,
+  CommonResponse,
+  Data,
+  JarspecSuccessResponse,
+  JarspecErrorResponse,
+} from './common/@types';
+
 const isErrorResponse = <T>(response: any): response is JarspecErrorResponse<T> => {
   return response.status 
     && response?.code >= 400
